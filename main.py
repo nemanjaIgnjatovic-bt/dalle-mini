@@ -7,6 +7,7 @@ from PIL import Image
 
 from dalle_model import DalleModel
 import streamlit as st
+import hydralit_components as hc
 
 from consts import DEFAULT_IMG_OUTPUT_DIR, ModelSize
 
@@ -49,7 +50,8 @@ def st_ui():
     text = st.text_input("Describe image you want to see")
     button = st.button('Draw')
     if button:
-        with st.spinner(text=f"Drawing {text}, it can take up to few minutes..."):
+        with hc.HyLoader(f"Painting your image, it can take up to 5-8 minutes", hc.Loaders.pretty_loaders,index=4):
+
             generated_images = generate_images(text)
             
             for img in generated_images:
